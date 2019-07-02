@@ -585,6 +585,13 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
 
+" 增加一些模板templates
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
+  augroup END
+endif
 
 
 " 保存python文件时删除多余空格
