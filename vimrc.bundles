@@ -36,6 +36,15 @@ else
     Plug 'w0rp/ale'
 endif
 
+" js美化
+"
+Plug 'Chiel92/vim-autoformat'
+
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint']
+
+nnoremap <leader>l :Autoformat<CR>
+
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
@@ -56,7 +65,7 @@ Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 Plug 'scrooloose/nerdcommenter'
 
 " 代码缩进
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 
 " 快速加入修改环绕字符
@@ -444,7 +453,7 @@ endif
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-    nnoremap <leader>y :YcmCompleter Format<Cr>
+    " nnoremap <leader>y :YcmCompleter Format<Cr>
 
     " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
     " old version
