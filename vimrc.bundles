@@ -55,6 +55,9 @@ Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 " 快速注释
 Plug 'scrooloose/nerdcommenter'
 
+" 代码缩进
+Plug 'Yggdroot/indentLine'
+
 
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
@@ -682,6 +685,10 @@ endif
     let g:airline_symbols.branch = '⎇'
     " 是否打开tabline
     " let g:airline#extensions#tabline#enabled = 1
+" }}}
+
+" indentLine {{{
+    " let g:indentLine_setColors = 0
 " }}}
 
 
