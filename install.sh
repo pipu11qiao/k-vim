@@ -91,9 +91,9 @@ cd $CURRENT_DIR/bundle/YouCompleteMe/
 git submodule update --init --recursive
 if [ `which clang` ]   # check system clang
 then
-    python install.py --clang-completer --system-libclang   # use system clang
+    python install.py --clang-completer --system-libclang --ts-completer   # use system clang
 else
-    python install.py --clang-completer
+    python install.py --clang-completer --ts-completer
 fi
 
 echo "Install Done!"
