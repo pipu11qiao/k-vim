@@ -56,7 +56,7 @@ Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 Plug 'scrooloose/nerdcommenter'
 
 " 代码缩进
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 
 " 快速加入修改环绕字符
@@ -170,13 +170,14 @@ if count(g:bundle_groups, 'tmux')
 endif
 
 if count(g:bundle_groups, 'markdown')
+    Plug 'godlygeek/tabular'
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
     " https://github.com/suan/vim-instant-markdown
     " npm -g install instant-markdown-d
-    " Plug 'suan/vim-instant-markdown'
-    " let g:instant_markdown_slow = 1
-    " let g:instant_markdown_autostart = 0
-    " map <F12> :InstantMarkdownPreview<CR>
+    Plug 'suan/vim-instant-markdown'
+    let g:instant_markdown_slow = 1
+    let g:instant_markdown_autostart = 0
+    map <F12> :InstantMarkdownPreview<CR>
 endif
 
 if count(g:bundle_groups, 'golang')
