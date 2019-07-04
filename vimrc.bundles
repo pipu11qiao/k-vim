@@ -43,7 +43,7 @@ Plug 'Chiel92/vim-autoformat'
 let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
 let g:formatters_javascript = ['eslint']
 
-nnoremap <leader>l :Autoformat<CR>
+nnoremap <leader><leader>e :Autoformat<CR>
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
@@ -180,7 +180,7 @@ endif
 
 if count(g:bundle_groups, 'markdown')
     Plug 'godlygeek/tabular'
-    Plug 'plasticboy/vim-markdown', {'for': 'md'}
+    Plug 'plasticboy/vim-markdown'
     " https://github.com/suan/vim-instant-markdown
     " npm -g install instant-markdown-d
     Plug 'suan/vim-instant-markdown'
@@ -453,7 +453,7 @@ endif
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-    " nnoremap <leader>y :YcmCompleter Format<Cr>
+    nnoremap <leader><leader>f :YcmCompleter Format<Cr>
 
     " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
     " old version
