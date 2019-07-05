@@ -609,7 +609,6 @@ if has("autocmd")
   augroup END
 endif
 
-
 " 保存python文件时删除多余空格
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
