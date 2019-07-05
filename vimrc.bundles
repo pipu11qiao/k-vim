@@ -878,6 +878,7 @@ endif
     let g:instant_markdown_slow = 1
     let g:instant_markdown_autostart = 0
     let g:vim_markdown_conceal = 0
+    let g:vim_markdown_conceal_code_blocks = 0
     map <F12> :InstantMarkdownPreview<CR>
 " }}}
 
