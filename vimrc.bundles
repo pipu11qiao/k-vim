@@ -40,16 +40,17 @@ endif
 "
 Plug 'Chiel92/vim-autoformat'
 
-let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-let g:formatters_javascript = ['eslint']
-
-nnoremap <leader><leader>e :Autoformat<CR>
+" let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+" let g:formatters_javascript = ['eslint',"js-beautify"]
+" 当前javascript 用eslint做提示，用js-beautify做格式化，先看下效果再决定用不用
+" 开启对应的eslint格式化
+nnoremap <leader><leader>f :Autoformat<CR>
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'pipu11qiao/vim-snippets'
 
 " auto complete
 " 代码自动补全
@@ -66,18 +67,18 @@ Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 Plug 'scrooloose/nerdcommenter'
 
 " 代码缩进
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
-Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 " trailingwhitespace
 " 快速去行尾空格 [, + <Space>]
 Plug 'bronson/vim-trailing-whitespace'
 " easyalign
 " 快速赋值语句对齐
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 " quick movement
 " easymotion
@@ -86,7 +87,7 @@ Plug 'Lokaltog/vim-easymotion'
 
 " 更高效的行内移动, f/F/t/T, 才触发
 " quickscope
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 
 Plug 'vim-scripts/matchit.zip'
 " signature
@@ -131,9 +132,9 @@ Plug 'thinca/vim-quickrun'
 
 " git
 " fugitive
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " gitgutter
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 
 " gundo
 " edit history, 可以查看回到某个历史状态
@@ -204,9 +205,9 @@ if count(g:bundle_groups, 'python')
 
     " isort  https://github.com/timothycrosley/isort#readme + https://github.com/fisadev/vim-isort#installation
     " pip install isort
-    Plug 'fisadev/vim-isort'
+    " Plug 'fisadev/vim-isort'
     " Shift-V 上下选中, ctrl + i 规范化
-    let g:vim_isort_map = '<C-i>'
+    " let g:vim_isort_map = '<C-i>'
 endif
 
 if count(g:bundle_groups, 'php')
@@ -229,6 +230,9 @@ if count(g:bundle_groups, 'javascript')
     " javascript
     " 注意: syntax这个插件要放前面
     Plug 'othree/yajs.vim' | Plug 'pangloss/vim-javascript'
+    Plug 'mxw/vim-jsx' | Plug 'pangloss/vim-javascript'
+    " jsx enable only for .jsx not .js
+    let g:jsx_ext_required = 1
     " Plug 'jelera/vim-javascript-syntax' | Plug 'pangloss/vim-javascript'
 
     " TODO: jquery? for, remove or keep
@@ -325,7 +329,7 @@ if has_key(g:plugs, 'syntastic')
     " let g:syntastic_html_checkers=['tidy', 'jshint']
     " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
     " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
-    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_javascript_checkers = ['eslint','js-bea']
 
     " to see error location list
     let g:syntastic_always_populate_loc_list = 1
@@ -454,7 +458,7 @@ endif
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-    nnoremap <leader><leader>f :YcmCompleter Format<Cr>
+    " nnoremap <leader><leader>f :YcmCompleter Format<Cr>
 
     " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
     " old version
@@ -537,15 +541,15 @@ endif
 " }}}
 
 " easyalign {{{
-    vmap <Leader>a <Plug>(EasyAlign)
-    nmap <Leader>a <Plug>(EasyAlign)
-    if !exists('g:easy_align_delimiters')
-    let g:easy_align_delimiters = {}
-    endif
-    let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
-    " Default:
-    " If a delimiter is in a highlight group whose name matches any of the followings, it will be ignored.
-    let g:easy_align_ignore_groups = ['Comment', 'String']
+    " vmap <Leader>a <Plug>(EasyAlign)
+    " nmap <Leader>a <Plug>(EasyAlign)
+    " if !exists('g:easy_align_delimiters')
+    " let g:easy_align_delimiters = {}
+    " endif
+    " let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+    " " Default:
+    " " If a delimiter is in a highlight group whose name matches any of the followings, it will be ignored.
+    " let g:easy_align_ignore_groups = ['Comment', 'String']
 " }}}
 
 " ################### 快速移动 ###################
@@ -562,14 +566,14 @@ endif
 " }}}
 
 
-" quickscope {{{
-    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-    " macvim/gvim会有问题, 暂时注解
-    " let g:qs_first_occurrence_highlight_color = '#afff5f' " gui vim
-    " let g:qs_first_occurrence_highlight_color = 155       " terminal vim
-    " let g:qs_second_occurrence_highlight_color = '#5fffff'  " gui vim
-    " let g:qs_second_occurrence_highlight_color = 81         " terminal vim
-" }}}
+" " quickscope {{{
+    " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+     " macvim/gvim会有问题, 暂时注解
+     " let g:qs_first_occurrence_highlight_color = '#afff5f' " gui vim
+     " let g:qs_first_occurrence_highlight_color = 155       " terminal vim
+     " let g:qs_second_occurrence_highlight_color = '#5fffff'  " gui vim
+     " let g:qs_second_occurrence_highlight_color = 81         " terminal vim
+" " }}}
 
 " ################### 快速选中 ###################
 
@@ -660,7 +664,7 @@ endif
 
 " fugitive {{{
     " :Gdiff  :Gstatus :Gvsplit
-    nnoremap <leader>ge :Gdiff<CR>
+    " nnoremap <leader>ge :Gdiff<CR>
     " not ready to open
     " <leader>gb maps to :Gblame<CR>
     " <leader>gs maps to :Gstatus<CR>
@@ -673,10 +677,10 @@ endif
 " gitgutter {{{
     " 同git diff,实时展示文件中修改的行
     " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
-    let g:gitgutter_map_keys = 0
-    let g:gitgutter_enabled = 0
-    let g:gitgutter_highlight_lines = 1
-    nnoremap <leader>gs :GitGutterToggle<CR>
+    " let g:gitgutter_map_keys = 0
+    " let g:gitgutter_enabled = 0
+    " let g:gitgutter_highlight_lines = 1
+    " nnoremap <leader>gs :GitGutterToggle<CR>
 " }}}
 
 " gundo {{{
@@ -698,11 +702,6 @@ endif
     " 是否打开tabline
     " let g:airline#extensions#tabline#enabled = 1
 " }}}
-
-" indentLine {{{
-    " let g:indentLine_setColors = 0
-" }}}
-
 
 
 " rainbow_parentheses {{{

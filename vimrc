@@ -595,6 +595,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType javascript,html,css,less,scss,jsx set tabstop=4 shiftwidth=4 softtabstop=4 expandtab ai
 autocmd FileType ruby,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown
+" autocmd BufRead,BufNewFile *.jsx set filetype=javascript
 autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
