@@ -40,8 +40,8 @@ endif
 "
 Plug 'Chiel92/vim-autoformat'
 
-" let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-" let g:formatters_javascript = ['eslint',"js-beautify"]
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint',"js-beautify"]
 " 当前javascript 用eslint做提示，用js-beautify做格式化，先看下效果再决定用不用
 " 开启对应的eslint格式化
 nnoremap <leader><leader>f :Autoformat<CR>
@@ -61,6 +61,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
 " 自动补全html/xml标签
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
+Plug 'alvan/vim-closetag'
+
 
 " quick edit
 " 快速注释
@@ -231,6 +233,8 @@ if count(g:bundle_groups, 'javascript')
     " 注意: syntax这个插件要放前面
     Plug 'othree/yajs.vim' | Plug 'pangloss/vim-javascript'
     Plug 'mxw/vim-jsx' | Plug 'pangloss/vim-javascript'
+    Plug 'posva/vim-vue'
+
     " jsx enable only for .jsx not .js
     let g:jsx_ext_required = 1
     " Plug 'jelera/vim-javascript-syntax' | Plug 'pangloss/vim-javascript'
@@ -329,7 +333,8 @@ if has_key(g:plugs, 'syntastic')
     " let g:syntastic_html_checkers=['tidy', 'jshint']
     " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
     " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
-    let g:syntastic_javascript_checkers = ['eslint','js-beautify]
+    " let g:syntastic_javascript_checkers = ['eslint',"js-beautify"]
+    let g:syntastic_javascript_checkers = ['eslint']
 
     " to see error location list
     let g:syntastic_always_populate_loc_list = 1
@@ -527,6 +532,13 @@ endif
 
 " closetag {{{
     let g:closetag_html_style=1
+    " Disables auto-close if not in a "valid" region (based on filetype)
+    let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
+    let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
 " }}}
 
 " ################### 快速编码 ###################
@@ -916,7 +928,6 @@ endif
     " format select block
     autocmd FileType python vnoremap <leader>y :!yapf<Cr>
 
-    " Plug 'posva/vim-vue'
 
     " Plug 'millermedeiros/vim-esformatter'
     " will run esformatter after pressing <leader> followed by the 'e' and 's'
